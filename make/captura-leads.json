@@ -1,0 +1,97 @@
+{
+  "_nota": "Blueprint ficticio y simplificado para estudiar el historial y el diff en GitHub. No es un export real de Make y no se importa tal cual.",
+  "name": "Clínica Sonrisa · Captura de solicitudes de cita (DEMO)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": "WEBHOOK_DE_EJEMPLO",
+        "maxResults": 1
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "anthropic:createMessage",
+      "version": 1,
+      "filter": {
+        "name": "Solo solicitudes válidas",
+        "conditions": [
+          [
+            {
+              "a": "{{1.email}}",
+              "o": "exist"
+            },
+            {
+              "a": "{{1.telefono}}",
+              "o": "exist"
+            }
+          ]
+        ]
+      },
+      "mapper": {
+        "prompt": "prompts/puntuar-lead.md",
+        "nombre": "{{1.nombre}}",
+        "email": "{{1.email}}",
+        "telefono": "{{1.telefono}}",
+        "motivo": "{{1.motivo}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "airtable:createRecord",
+      "version": 1,
+      "mapper": {
+        "base": "Clínica Sonrisa (ficticia)",
+        "tabla": "Citas",
+        "campos": {
+          "Nombre": "{{1.nombre}}",
+          "Email": "{{1.email}}",
+          "Teléfono": "{{1.telefono}}",
+          "Puntuación": "{{2.puntuacion}}",
+          "Origen": "{{1.origen}}"
+        }
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "email:sendEmail",
+      "version": 1,
+      "mapper": {
+        "para": "recepcion@example.com",
+        "asunto": "Nueva solicitud de cita: {{1.nombre}}",
+        "texto": "Puntuación {{2.puntuacion}}. Ver en Airtable."
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "zone": "ejemplo"
+  }
+}

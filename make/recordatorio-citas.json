@@ -1,0 +1,47 @@
+{
+  "_nota": "Blueprint ficticio y simplificado para estudiar GitHub. No es un export real de Make.",
+  "name": "Clínica Sonrisa · Recordatorio 24 h antes (DEMO)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "airtable:searchRecords",
+      "version": 1,
+      "mapper": {
+        "base": "Clínica Sonrisa (ficticia)",
+        "tabla": "Citas",
+        "formula": "IS_SAME({Fecha}, DATEADD(TODAY(), 1, 'days'), 'day')"
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "email:sendEmail",
+      "version": 1,
+      "mapper": {
+        "para": "{{1.Email}}",
+        "asunto": "Recordatorio: mañana tienes cita en Clínica Sonrisa",
+        "texto": "Hola {{1.Nombre}}, te esperamos mañana a las {{1.Hora}}."
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "scheduling": {
+    "type": "indefinitely",
+    "interval": 86400
+  },
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "zone": "ejemplo"
+  }
+}
