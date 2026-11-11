@@ -1,0 +1,4 @@
+# Configuración mínima de la demo.
+# GitHub no envía un JWT de Supabase, así que esta función no lo exige:
+[functions.github-webhook]
+verify_jwt = false
