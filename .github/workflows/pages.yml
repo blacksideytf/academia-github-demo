@@ -25,7 +25,7 @@ jobs:
       url: ${{ steps.despliegue.outputs.page_url }}
     steps:
       - name: Descargar el repositorio
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Preparar Pages
         uses: actions/configure-pages@v6

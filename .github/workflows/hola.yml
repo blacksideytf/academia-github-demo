@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 5           # si se cuelga, se corta a los 5 minutos
     steps:
       - name: Descargar el repositorio
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Saludar
         run: echo "Hola. Me ha disparado el evento ${{ github.event_name }} en ${{ github.repository }}"
