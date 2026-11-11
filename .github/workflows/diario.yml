@@ -1,0 +1,30 @@
+# .github/workflows/diario.yml · Avanzado · 2
+name: Tareas diarias
+
+on:
+  schedule:
+    # 06:17 UTC de lunes a viernes (07:17 en invierno y 08:17 en verano, hora peninsular)
+    - cron: '17 6 * * 1-5'
+  workflow_dispatch:      # botón «Run workflow» para probar cuando quieras
+
+permissions:
+  contents: read
+
+jobs:
+  avisar-a-make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Llamar al webhook de Make
+        env:
+          # Secret creado en Settings → Secrets and variables → Actions
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        run: |
+          # En la demo no hay secreto: el job termina bien y lo explica.
+          if [ -z "$MAKE_WEBHOOK_URL" ]; then
+            echo "Modo demo: no hay secreto MAKE_WEBHOOK_URL. Créalo para probar el envío real."
+            exit 0
+          fi
+          curl --fail --silent --show-error -X POST "$MAKE_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            --data "{\"origen\": \"github-actions\", \"repo\": \"$GITHUB_REPOSITORY\"}"

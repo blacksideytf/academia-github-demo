@@ -1,0 +1,32 @@
+# .github/workflows/hola.yml · Avanzado · 1
+# Nombre que verás en la pestaña «Actions»
+name: Mi primer workflow
+
+# CUÁNDO se ejecuta
+on:
+  push:
+    branches: [main]      # cada push a main
+  workflow_dispatch:      # y con el botón «Run workflow»
+
+# Qué puede hacer el token del workflow: solo leer el repo
+permissions:
+  contents: read
+
+jobs:
+  revisar-repo:                  # nombre del job (sale en «Actions»)
+    runs-on: ubuntu-latest       # máquina Linux que presta GitHub
+    timeout-minutes: 5           # si se cuelga, se corta a los 5 minutos
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v6
+
+      - name: Saludar
+        run: echo "Hola. Me ha disparado el evento ${{ github.event_name }} en ${{ github.repository }}"
+
+      - name: Listar archivos
+        run: ls -la
+
+      - name: Contar blueprints JSON
+        run: |
+          total=$(find ./make -name '*.json' | wc -l)
+          echo "Blueprints JSON en make/: $total"

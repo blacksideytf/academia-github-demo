@@ -1,0 +1,40 @@
+# .github/workflows/pages.yml · Avanzado · 6
+# Antes: Settings → Pages → Build and deployment → Source: «GitHub Actions»
+# En la demo solo se lanza a mano: Pages en un repo privado necesita plan Pro, Team o Enterprise.
+name: Publicar en GitHub Pages
+
+on:
+  workflow_dispatch:
+
+# Permisos mínimos que necesita deploy-pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una publicación cada vez, sin cancelar la que está en marcha
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v6
+
+      - name: Preparar Pages
+        uses: actions/configure-pages@v6
+
+      - name: Empaquetar SOLO la carpeta site/ (lo que quieres publicar)
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/
+
+      - name: Publicar
+        id: despliegue
+        uses: actions/deploy-pages@v5

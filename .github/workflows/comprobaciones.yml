@@ -1,0 +1,40 @@
+# .github/workflows/comprobaciones.yml · Avanzado · 3
+name: Comprobaciones
+
+on:
+  pull_request:
+    branches: [main]      # cada PR que apunte a main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-json:           # este nombre es el del check obligatorio
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validar todos los .json (blueprints, configuraciones)
+        run: |
+          fallos=0
+          while IFS= read -r -d '' f; do
+            if ! jq empty "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::JSON no válido. Vuelve a exportarlo o revisa la última edición."
+              fallos=1
+            fi
+          # .devcontainer/devcontainer.json admite comentarios (JSONC): no es JSON puro y se excluye
+          done < <(find . -name '*.json' -not -path './.git/*' -not -path './node_modules/*' -not -path './.devcontainer/*' -print0)
+          exit $fallos
+
+  lint-markdown:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Revisar el formato de los .md
+        uses: DavidAnson/markdownlint-cli2-action@v25
+        with:
+          globs: '**/*.md'
