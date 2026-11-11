@@ -28,10 +28,6 @@
             {
               "a": "{{1.email}}",
               "o": "exist"
-            },
-            {
-              "a": "{{1.telefono}}",
-              "o": "exist"
             }
           ]
         ]
