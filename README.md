@@ -92,6 +92,12 @@ La lista de ejercicios está en [docs/ejercicios.md](docs/ejercicios.md).
 - Abre un issue con la plantilla «Tarea o petición».
 - Contacto: @blacksideytf
 
+## Contacto
+
+- Canal: issues de este repo, con la plantilla «Tarea o petición»
+- Horario de respuesta (ficticio): de lunes a viernes, de 9:00 a 18:00
+- Responsable: @blacksideytf
+
 ## Cambios
 
 El historial completo está en los commits del repo.
