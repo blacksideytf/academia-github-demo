@@ -1,0 +1,14 @@
+# .github/CODEOWNERS
+# Formato: patrón  @usuario  o  @organizacion/equipo
+# La ÚLTIMA línea que coincide gana: lo general arriba, lo concreto abajo.
+# Los dueños necesitan permiso de escritura (Write) en el repo.
+
+# Por defecto, todo lo revisa quien lleva el repo
+*            @blacksideytf
+
+# En un equipo real, cada carpeta tendría su dueño. Ejemplos (comentados):
+# /make/       @blacksideytf @freelance-make
+# /supabase/   @blacksideytf @dev-backend
+
+# Workflows y configuración de GitHub: solo quien manda en el repo
+/.github/    @blacksideytf

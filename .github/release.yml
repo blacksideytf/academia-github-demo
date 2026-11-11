@@ -1,0 +1,15 @@
+# Ordena las notas automáticas de cada release por etiquetas (Medio · 8)
+changelog:
+  exclude:
+    labels:
+      - interno
+  categories:
+    - title: Novedades
+      labels:
+        - enhancement
+    - title: Correcciones
+      labels:
+        - bug
+    - title: Otros cambios
+      labels:
+        - "*"
