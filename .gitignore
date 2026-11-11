@@ -1,0 +1,31 @@
+# .gitignore · proyectos de automatización (NexumIA)
+
+# Claves y secretos: nunca al repositorio
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+credentials*.json
+secrets/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencias, builds y registros
+node_modules/
+dist/
+build/
+.venv/
+__pycache__/
+*.log
+
+# Exportaciones con datos de clientes
+exports/
+datos-clientes/
+
+# Si descargas un JSON de credenciales (por ejemplo, de Google Cloud),
+# guárdalo fuera de la carpeta del repo: su nombre no siempre empieza por credentials.
