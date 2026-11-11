@@ -74,7 +74,7 @@ D --> F[Recordatorio 24 h antes]
 
 - Issues con la plantilla y etiquetas, abiertas y cerradas.
 - Un pull request fusionado con «Squash and merge» que cerró su issue con `Closes #N`.
-- Un pull request abierto con un blueprint roto a propósito: su check sale en rojo.
+- El pull request #6 traía un blueprint roto a propósito y su check salía en rojo. Se fusionó igualmente y rompió `main`; el pull request #8 lo arregló. Es el caso que evita la regla «Require status checks to pass before merging» (Avanzado · 4).
 - Un historial con commits `docs:`, `feat:`, `fix:` y `chore:`, incluido un `fix:` que corrige un filtro de Make.
 
 La lista de ejercicios está en [docs/ejercicios.md](docs/ejercicios.md).

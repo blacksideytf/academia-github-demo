@@ -37,10 +37,11 @@
   ],
   "scheduling": {
     "type": "indefinitely",
-    "interval": 43200
+    "interval": 86400
   },
   "metadata": {
     "instant": false,
     "version": 1,
     "zone": "ejemplo"
   }
+}
