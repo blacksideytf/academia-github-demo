@@ -1,0 +1,28 @@
+// .devcontainer/devcontainer.json · Avanzado · 9
+{
+  "name": "Academia NexumIA · demo",
+
+  // Imagen base con Node.js 24, del proyecto Dev Containers
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+
+  // Herramientas extra: GitHub CLI y Python
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+
+  // Extensiones de VS Code que todo el equipo necesita
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint"
+      ]
+    }
+  },
+
+  // Se ejecuta una vez, al crear el codespace
+  "postCreateCommand": "node --version && python3 --version && gh --version"
+
+  // Nada de claves aquí: usa Codespaces secrets en tu cuenta o en el repo
+}
