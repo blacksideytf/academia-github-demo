@@ -68,6 +68,7 @@ D --> F[Recordatorio 24 h antes]
 | `CLAUDE.md` | Reglas del repo para Claude | GitHub + Claude · 4 |
 | `.github/workflows/claude.yml` | @claude en issues y PR | GitHub + Claude · 6 |
 | `REVIEW.md` | Qué mirar en Code Review | GitHub + Claude · 7 |
+| `docs/donde-mirar/` | Guías visuales: dónde mirar en GitHub, con capturas | Todos |
 | `docs/` | Runbook, política de uso y ejercicios | Todos |
 
 ## Ejemplos ya montados
